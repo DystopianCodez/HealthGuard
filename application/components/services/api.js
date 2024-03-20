@@ -8,7 +8,7 @@ export default async function requestPost(linkParam, content) {
   return await axios
     .post(`${LinkRequest}${linkParam}`, content)
     .then((res) => {
-      return res;
+      return res.data;
     })
     .catch((err) => console.log(err));
 }
