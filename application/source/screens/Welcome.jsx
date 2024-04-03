@@ -1,57 +1,43 @@
 // Dependencies & Packages Import
 import { StyleSheet, Text, View, Image, SafeAreaView } from "react-native";
+import { useFonts } from "expo-font";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import FlatButton from "../layouts/common/Button";
+import axios from "axios";
+import requestPost from "../api/api";
 
 export default function Welcome({ navigation }) {
-  function LoginNavigator() {
-    navigation.navigate("LoginScreen");
+  const [fontsLoaded, fontError] = useFonts({
+    DMSansThin: require("../../assets/fonts/DMSans_36pt-Thin.ttf"),
+    DMSansLight: require("../../assets/fonts/DMSans_36pt-Light.ttf"),
+    DMSansMedium: require("../../assets/fonts/DMSans_36pt-Medium.ttf"),
+    DMSansRegular: require("../../assets/fonts/DMSans-Regular.ttf"),
+    DMSansBold: require("../../assets/fonts/DMSans-Bold.ttf"),
+  });
+
+  // Font Loader
+  if (!fontsLoaded) {
+    return <Text>Loading...</Text>; // Or any other placeholder content
   }
 
-  function RegistrationNavigator() {
-    navigation.navigate("RegisterScreen");
+  AsyncStorage.getItem("AuthenticationToken").then((res) => console.log(res));
+
+  async function poster() {
+    let data = await requestPost("poll-earthquakes", "Hello!");
   }
+
+  poster();
 
   return (
-    <SafeAreaView style={styles.container}>
-      <View style={styles.buttonContainer}>
-        <FlatButton
-          content={"Sign Up"}
-          stylin={{ width: "100%" }}
-          buttonStyles={{
-            backgroundColor: "white",
-            width: "100%",
-            padding: 20,
-            borderRadius: 30,
-          }}
-          event={LoginNavigator}
-        />
-        <FlatButton
-          content={"Sign In"}
-          stylin={{ width: "100%", marginTop: 20 }}
-          buttonStyles={{
-            backgroundColor: "rgba(255, 255, 255, 0.4)",
-            width: "100%",
-            padding: 20,
-            borderRadius: 30,
-          }}
-          event={RegistrationNavigator}
-        />
-      </View>
-    </SafeAreaView>
+    <View style={Styles.container}>
+      <Text>Hello!</Text>
+    </View>
   );
 }
 
-const styles = StyleSheet.create({
+const Styles = StyleSheet.create({
   container: {
-    backgroundColor: "#CED3DC",
     flex: 1,
-    padding: 20,
-    justifyContent: "flex-end",
     alignItems: "center",
-  },
-  buttonContainer: {
-    width: "100%",
-    padding: 20,
+    justifyContent: "center",
   },
 });

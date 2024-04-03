@@ -11,8 +11,9 @@ import { useFonts } from "expo-font";
 import { useState } from "react";
 import requestPost from "../../../source/api/api";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import Styles from "../../../source/styles/styles";
+import Styles from "../../../assets/styles/styles";
 import FlatButton from "../../layouts/common/Button";
+import axios from "axios";
 
 export default function Login({ navigation }) {
   const [fontsLoaded, fontError] = useFonts({
@@ -39,14 +40,17 @@ export default function Login({ navigation }) {
       emailAddress: emailAddress,
       password: password,
     };
-    let data = await requestPost("login-account/app", UserData);
-    console.log(data);
+    let data = await requestPost("login-account/application", UserData);
     console.log(data.UniqueToken);
     let token = data.UniqueToken;
     let firstName = data.FirstName;
     await AsyncStorage.setItem("AuthenticationToken", token);
     await AsyncStorage.setItem("FirstName", firstName);
-    navigation.navigate("DashboardHomeScreen");
+    // navigation.navigate("DashboardHomeScreen");
+
+    await axios.post("http://192.168.1.62:3000/poll-communicate-application", {
+      data: token,
+    });
   }
 
   if (!fontsLoaded) {

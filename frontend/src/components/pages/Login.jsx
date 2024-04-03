@@ -15,7 +15,7 @@ function Login() {
 
   function accountCreationHandler() {
     axios
-      .post("http://localhost:3000/login-account", {
+      .post("http://localhost:3000/login-account/website", {
         emailAddress: emailAddress,
         password: password,
       })

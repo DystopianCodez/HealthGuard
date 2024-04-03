@@ -1,20 +1,32 @@
+// Dependencies & Packages Import
 import { StyleSheet, Text, View, Button } from "react-native";
 import { useFonts } from "expo-font";
 
+// Styles Components Import
+import HomeStyles from "./pages/HomeStyles";
+import LoginStyles from "./pages/LoginStyles";
+import DashboardStyles from "./pages/DashboardStyles";
+import MapStyles from "./pages/mapping/MapStyles";
+import ChatStyles from "./pages/mapping/ChatApp";
+
 function StateHook() {
   const [fontsLoaded, fontError] = useFonts({
-    DMSansThin: require("../../assets/fonts/DMSans_36pt-Thin.ttf"),
-    DMSansLight: require("../../assets/fonts/DMSans_36pt-Light.ttf"),
-    DMSansMedium: require("../../assets/fonts/DMSans_36pt-Medium.ttf"),
-    DMSansRegular: require("../../assets/fonts/DMSans-Regular.ttf"),
-    DMSansBold: require("../../assets/fonts/DMSans-Bold.ttf"),
+    DMSansThin: require("../fonts/DMSans_36pt-Thin.ttf"),
+    DMSansLight: require("../fonts/DMSans_36pt-Light.ttf"),
+    DMSansMedium: require("../fonts/DMSans_36pt-Medium.ttf"),
+    DMSansRegular: require("../fonts/DMSans-Regular.ttf"),
+    DMSansBold: require("../fonts/DMSans-Bold.ttf"),
   });
 }
 
 const Styles = StyleSheet.create({
+  HomeStyles,
+  LoginStyles,
+  DashboardStyles,
+  MapStyles,
+  ChatStyles,
   container: {
     flex: 1,
-    backgroundColor: "#fff",
   },
   MapContainer: {
     height: "100%",
@@ -40,6 +52,9 @@ const Styles = StyleSheet.create({
     padding: 12,
     display: "flex",
     flexDirection: "row",
+    alignItems: "center",
+    marginBottom: 20,
+    borderRadius: 10,
   },
   familyMemberIcon: {
     height: 30,
@@ -49,10 +64,14 @@ const Styles = StyleSheet.create({
     marginRight: 10,
   },
   familyName: {
+    fontFamily: "DMSansBold",
+    fontSize: 18,
+    letterSpacing: 1,
+  },
+  relationShipStatus: {
     fontFamily: "DMSansThin",
-    fontWeight: "normal",
-    textTransform: "uppercase",
-    fontSize: 15,
+    fontSize: 18,
+    letterSpacing: 1,
   },
   memberTxt: {
     fontFamily: "DMSansMedium",
@@ -80,7 +99,6 @@ const Styles = StyleSheet.create({
   },
   WelcomeSubTxt: {
     fontFamily: "DMSansLight",
-    fontWeight: 100,
     letterSpacing: 2,
   },
   RegistrationContainer: {
@@ -121,119 +139,22 @@ const Styles = StyleSheet.create({
     borderRadius: 25,
   },
   //   Dashboard Home Screen
-  DashboardContainer: {
-    paddingTop: 80,
-    flex: 1,
-    backgroundColor: "#FEFEFF",
+
+  //   CHat APp
+
+  contentMargin: {
+    paddingTop: 20,
+    position: "relative",
   },
-  headingText: {
-    fontFamily: "DMSansLight",
-    fontSize: 20,
-    letterSpacing: 2,
-    margin: 15,
-  },
-  dashboardHero: {
-    flex: 0.3,
-    backgroundColor: "#9590D5",
-    borderRadius: 80,
-    shadowColor: "#171717",
-    shadowOffset: { width: -2, height: 4 },
-    shadowOpacity: 0.2,
-    shadowRadius: 3,
-    marginTop: 30,
-    margin: 25,
-  },
-  navigation: {
-    backgroundColor: "#9590D5",
+  descriptiveDescription: {
+    backgroundColor: "white",
     position: "absolute",
     bottom: 0,
     width: "100%",
-    right: 0,
-    left: 0,
-    display: "flex",
-    flexDirection: "row",
+    height: "45%",
+    borderTopLeftRadius: 20,
+    borderTopRightRadius: 20,
     padding: 20,
-    justifyContent: "space-between",
-  },
-  //   CHat APp
-
-  ChatApplication: {
-    flex: 1,
-    backgroundColor: "#FEFEFF",
-    position: "relative",
-  },
-
-  BotHeader: {
-    backgroundColor: "red",
-    flex: 0.15,
-  },
-
-  UserMessageContainer: {
-    backgroundColor: "#B252DC",
-    alignItems: "flex-start",
-    margin: 20,
-    padding: 20,
-    right: 0,
-    color: "white",
-    justifyContent: "flex-end",
-    alignSelf: "flex-end",
-    borderTopLeftRadius: 30,
-    borderBottomLeftRadius: 30,
-    borderBottomRightRadius: 30,
-    width: "60%",
-  },
-  BotMessageContainer: {
-    backgroundColor: "#EEEEEE",
-    alignItems: "flex-start",
-    margin: 20,
-    padding: 20,
-    left: 0,
-    color: "white",
-    justifyContent: "flex-start",
-    alignSelf: "flex-start",
-    borderBottomLeftRadius: 30,
-    borderBottomRightRadius: 30,
-    width: "60%",
-    borderTopRightRadius: 30,
-  },
-  UserMessageText: {
-    fontFamily: "DMSansLight",
-    color: "white",
-    lineHeight: 30,
-    textAlign: "right",
-  },
-  BotMessageText: {
-    fontFamily: "DMSansLight",
-    color: "black",
-    lineHeight: 30,
-  },
-  messageContainer: {
-    flex: 1,
-    justifyContent: "flex-start", // Aligns children to the start of the container's main axis.
-    alignItems: "flex-start", // Aligns children to the start of the container's cross axis.
-    padding: 50,
-  },
-  ChatMessageContainer: {
-    padding: 0.2,
-  },
-  InputContainerChat: {
-    backgroundColor: "#FEFEFF",
-    margin: 20,
-    padding: 20,
-    borderRadius: 30,
-    color: "white",
-    position: "absolute",
-    bottom: 0,
-    width: "90%",
-    marginBottom: 50,
-    shadowColor: "#000",
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.25,
-    shadowRadius: 3.84,
-  },
-  InputText: {
-    fontFamily: "DMSansLight",
-    fontSize: 13,
   },
 });
 

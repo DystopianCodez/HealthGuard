@@ -6,6 +6,7 @@ function Registration() {
   const [lastName, setLastName] = useState(0);
   const [password, setPassword] = useState(0);
   const [emailAddress, setEmailAddress] = useState(0);
+  const [relationship, setRelationship] = useState(0);
 
   function firstNameHandler(event) {
     setFirstName(event.target.value);
@@ -15,12 +16,16 @@ function Registration() {
     setLastName(event.target.value);
   }
 
+  function emailAddressHandler(event) {
+    setEmailAddress(event.target.value);
+  }
+
   function passwordHandler(event) {
     setPassword(event.target.value);
   }
 
-  function emailAddressHandler(event) {
-    setEmailAddress(event.target.value);
+  function relationshipHandler(event) {
+    setRelationship(event.target.value);
   }
 
   function accountCreationHandler() {
@@ -30,6 +35,7 @@ function Registration() {
         lastName: lastName,
         emailAddress: emailAddress,
         password: password,
+        relationships: password,
       })
       .then(function (response) {
         console.log(response);
@@ -43,10 +49,14 @@ function Registration() {
     <>
       <input placeholder={"Enter First Name"} onChange={firstNameHandler} />
       <input placeholder={"Enter Last Name"} onChange={lastNameHandler} />
-      <input placeholder={"Enter Password Name"} onChange={passwordHandler} />
       <input
         placeholder={"Enter Email Address"}
         onChange={emailAddressHandler}
+      />
+      <input placeholder={"Enter Password"} onChange={passwordHandler} />
+      <input
+        placeholder={"Enter Relationship Status"}
+        onChange={relationshipHandler}
       />
       <button onClick={accountCreationHandler}>Create Account</button>
     </>

@@ -1,17 +1,15 @@
-import { StatusBar } from "expo-status-bar";
+// Dependencies & Packages Import
 import { StyleSheet, Text, View } from "react-native";
-import requestPost from "./components/services/api";
-import DashStack from "./components/navigation/DashStack";
+import Navigator from "./source/navigation/Navigator";
+import { MessageProvider } from "./source/api/socket/socket";
+import ConnectToSocket from "./source/api/socket/socketConnect";
+
+ConnectToSocket();
 
 export default function App() {
-  return <DashStack />;
+  return (
+    <MessageProvider>
+      <Navigator />
+    </MessageProvider>
+  );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-});

@@ -19,24 +19,24 @@ const getDatabase = () => {
 };
 
 class Database {
-  constructor(collection, queryData, updateData) {
+  constructor(collection, data, updateData) {
     this.collection = collection;
-    this.queryData = queryData;
+    this.data = data;
     this.updateData = updateData;
   }
 
   Insert() {
     database
       .collection(this.collection)
-      .insertOne(this.queryData)
-      .then((res) => console.log(res))
+      .insertOne(this.data)
+      .then((res) => res)
       .catch((err) => console.log(err));
   }
 
   Update() {
     database
       .collection(this.collection)
-      .updateOne(this.queryData, this.updateData)
+      .updateOne(this.data, this.updateData)
       .then((res) => console.log(res))
       .catch((err) => console.log(err));
   }
@@ -45,7 +45,7 @@ class Database {
     try {
       const res = await database
         .collection(this.collection)
-        .find(this.queryData)
+        .find(this.data)
         .toArray();
       return res;
     } catch (err) {
